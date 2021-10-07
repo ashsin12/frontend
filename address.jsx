@@ -3,50 +3,50 @@ import React, {Component} from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-class Review extends Component {
+class Address extends Component {
   state = {
-    review: [],
+    address: [],
   };
   componentDidMount() {
-    axios.get("http://localhost:8082/reviews").then((res) => {
+    axios.get("http://localhost:8082/address").then((res) => {
       console.log(res);
-      this.setState({ review: res.data });
+      this.setState({ address: res.data });
     });
   }
   render() {
-    const { review } = this.state;
+    const { address } = this.state;
 
     return (
       <div>
-        <h2>Review</h2>
+        <h2>Address</h2>
         <div>
           <table className="table table-sm">
             <thead>
               <tr>
-                <th scope="col">ReviewId</th>
-                <th scope="col">Comment</th>
-                <th scope="col">Headline</th>
-                <th scope="col">Rating</th>
-                <th scope="col">Review On</th>
+                <th scope="col">AddressId</th>
+                <th scope="col">Addresses</th>
+                <th scope="col">city</th>
+                <th scope="col">country</th>
+                <th scope="col">pincode </th>
                 <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody>
-              {review.map((res) => (
-                <tr key={res.reviewId}>
-                  <th scope="row">{res.reviewId}</th>
-                  <td>{res.comment}</td>
-                  <td>{res.headLine}</td>
-                  <td>{res.rating}</td>
-                  <td>{res.reviewOn	}</td>
+              {address.map((res) => (
+                <tr key={res.addressId}>
+                  <th scope="row">{res.addressId}</th>
+                  <td>{res.addresses}</td>
+                  <td>{res.city}</td>
+                  <td>{res.country}</td>
+                  <td>{res.pincode	}</td>
                   <td>
-                    <Link to={`/reviews/${res.reviewId}`}>
+                    <Link to={`/address/${res.addressId}`}>
                       <button
                         type="button"
                         className="bi bi-arrow-clockwise"
                       ></button>
                     </Link>
-                    <Link to={`/reviews/${res.reviewId}`}>
+                    <Link to={`/address/${res.addressId}`}>
                       <button
                         type="button"
                         className="bi bi-trash"
@@ -65,4 +65,4 @@ class Review extends Component {
 
 
   
-  export default Review;
+  export default Address;
